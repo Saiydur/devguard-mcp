@@ -1,0 +1,23 @@
+name: False positive
+description: A rule flagged something legitimate
+labels: [false-positive]
+body:
+  - type: input
+    id: rule
+    attributes: {label: Rule id, placeholder: DG-PR-003}
+    validations: {required: true}
+  - type: input
+    id: version
+    attributes: {label: devguard-mcp version (`devguard-mcp --version`)}
+    validations: {required: true}
+  - type: textarea
+    id: context
+    attributes:
+      label: What was flagged?
+      description: File type, project/tooling type, and why it is legitimate. Do not paste payloads or secrets.
+    validations: {required: true}
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal synthetic reproduction
+      description: The structure that triggers the rule (e.g. "line of 3,500 chars with a 120-space run"), not the original file.

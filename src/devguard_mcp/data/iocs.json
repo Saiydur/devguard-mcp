@@ -1,0 +1,68 @@
+{
+  "version": "2026-10-26",
+  "description": "Indicators for the PolinRider (DPRK-linked) repository implant and the GhostAction GitHub Actions secret-theft campaign. Strings only; no payload content.",
+  "sources": [
+    "https://github.com/OpenSourceMalware/PolinRider",
+    "https://opensourcemalware.com/blog/polinrider-dprk-compromised-hundreds-of-github-repos",
+    "https://blog.gitguardian.com/ghostaction-github-actions-supply-chain-attack-returns/",
+    "https://www.stepsecurity.io/blog/ghostaction-campaign-over-3-000-secrets-stolen-through-malicious-github-workflows",
+    "Direct analysis of an infected developer machine (Oct 2026)"
+  ],
+  "strong_markers": [
+    { "id": "obf-loader-a", "regex": "_0xdf6eg", "literal": "_0xdf6eg", "campaign": "polinrider" },
+    { "id": "obf-loader-b", "regex": "_0x355e", "literal": "_0x355e", "campaign": "polinrider" },
+    { "id": "stage-tag-a9", "regex": "A9-3427-11", "literal": "A9-3427-11", "campaign": "polinrider" },
+    { "id": "seed-rmcej", "regex": "rmcej%otb%", "literal": "rmcej%otb%", "campaign": "polinrider" },
+    { "id": "seed-cot3t", "regex": "Cot%3t=shtP", "literal": "Cot%3t=shtP", "campaign": "polinrider" },
+    { "id": "xor-key-1", "regex": "q4FZkxX\\{!h,Sr3=@", "literal": "q4FZkxX{!h,Sr3=@", "campaign": "polinrider" },
+    { "id": "xor-key-2", "regex": "2\\[gWfGj;<:-93Z\\^C", "literal": "2[gWfGj;<:-93Z^C", "campaign": "polinrider" },
+    { "id": "xor-key-3", "regex": "m6:tTh\\^D\\)cBz\\?NM\\]", "literal": "m6:tTh^D)cBz?NM]", "campaign": "polinrider" },
+    { "id": "stage-url-path", "regex": "/0x/cls", "literal": "/0x/cls", "campaign": "polinrider" },
+    { "id": "runner-name", "regex": "\\.npm-ws", "literal": ".npm-ws", "campaign": "polinrider" }
+  ],
+  "weak_markers": [
+    { "id": "global-bang", "regex": "global\\[\\s*[\"']![\"']\\s*\\]|global\\[\\s*[\"']\\\\u0021[\"']\\s*\\]", "campaign": "polinrider" },
+    { "id": "global-i-tag", "regex": "global\\.i\\s*=\\s*[\"']A\\d+-", "campaign": "polinrider" },
+    { "id": "global-v-tag", "regex": "global\\[\\s*[\"']_V[\"']\\s*\\]\\s*=\\s*[\"']\\d+-", "campaign": "polinrider" }
+  ],
+  "ips": [
+    { "value": "95.135.181.151", "campaign": "polinrider", "note": "HTTP second-stage server (ports 80 and 443)" },
+    { "value": "193.32.204.199", "campaign": "ghostaction", "note": "plain-HTTP exfiltration endpoint" },
+    { "value": "170.39.218.2", "campaign": "ghostaction", "note": "exfiltration endpoint seen Oct 2025 - Mar 2026" }
+  ],
+  "domains": [
+    { "value": "260120.vercel.app", "campaign": "polinrider" },
+    { "value": "default-configuration.vercel.app", "campaign": "polinrider" },
+    { "value": "vscode-settings-bootstrap.vercel.app", "campaign": "polinrider" },
+    { "value": "vscode-settings-config.vercel.app", "campaign": "polinrider" },
+    { "value": "vscode-bootstrapper.vercel.app", "campaign": "polinrider" },
+    { "value": "vscode-load-config.vercel.app", "campaign": "polinrider" },
+    { "value": "bold-dhawan.45-139-104-115.plesk.page", "campaign": "ghostaction" },
+    { "value": "objective-hopper.45-139-104-115.plesk.page", "campaign": "ghostaction" },
+    { "value": "carte-avantage.com", "campaign": "ghostaction" },
+    { "value": ".oast.fun", "campaign": "ghostaction", "note": "Interactsh callback domain" }
+  ],
+  "helper_files": [
+    { "name": "temp_auto_push.bat", "severity": "high", "campaign": "polinrider", "note": "rewrites the last commit and force-pushes it" },
+    { "name": "config.bat", "severity": "low", "campaign": "polinrider", "note": "referenced from .gitignore in reported infections; common name, review only" }
+  ],
+  "workflow_filenames": [
+    { "name": "github_actions_security.yml", "campaign": "ghostaction" },
+    { "name": "security-check.yml", "campaign": "ghostaction" },
+    { "name": "security-audit.yml", "campaign": "ghostaction" }
+  ],
+  "workflow_markers": [
+    "send-secrets",
+    "Prepare Cache Busting",
+    "Github Actions Security"
+  ],
+  "suspicious_commit_messages": [
+    "Add Github Actions Security workflow",
+    "Update Github Actions Security workflow",
+    "Add security check workflow"
+  ],
+  "persistence_paths": {
+    "home_dirs": [".node_modules"],
+    "home_files": [".node_modules/.npm-ws-runner.js", ".node_modules/.npm-ws.json", ".node_modules/.npm-ws.pid"]
+  }
+}

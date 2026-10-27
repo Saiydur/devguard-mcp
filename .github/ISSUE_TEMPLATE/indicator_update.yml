@@ -1,0 +1,22 @@
+name: New or changed indicator
+description: Propose a marker, host, file name or structural pattern
+labels: [indicators]
+body:
+  - type: dropdown
+    id: campaign
+    attributes:
+      label: Campaign
+      options: [PolinRider, GhostAction, Other]
+    validations: {required: true}
+  - type: textarea
+    id: indicator
+    attributes:
+      label: Indicator(s)
+      description: Strings, hosts, file names or structure. **No payloads, no working loaders.**
+    validations: {required: true}
+  - type: textarea
+    id: source
+    attributes:
+      label: Source and confidence
+      description: Public link or first-hand observation; how sure are you; could it appear in benign software?
+    validations: {required: true}
